@@ -1,0 +1,148 @@
+/* For mails.js */
+.add-category-btn {
+  background-color: #636977;
+  padding: 1.2em 1em;
+}
+.category-pill {
+  /* box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.05); */
+  /* background-color: #ffffff; */
+  border-radius: 30px;
+  padding: 0.8em 1.5rem;
+  margin: 0em 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 3em;
+  background-color: #cbcde7;
+  color: #636977;
+  font-weight: bold;
+  font-size: 18px;
+}
+.mail-desk-headers {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333741;
+}
+.active-category-pill {
+  border: 3px solid #a8abc1;
+}
+.category-inpt {
+  border: none;
+}
+.category-inpt:focus {
+  outline: none;
+}
+.add-category-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 0.8em;
+}
+.hideScrollBar {
+  overflow-y: hidden;
+}
+/* View Mail */
+.mail-desk-cards {
+  /* box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.05); */
+  background-color: #ffffff;
+  border-radius: 15px;
+  height: 16rem;
+  margin: 0.5rem;
+  padding: 1.5em 1em 1em 2em;
+  color: #333741;
+}
+.center-elem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Mail Desk Modal */
+.maildesk-modal-inpt,
+.maildesk-modal-inpt:focus {
+  border: none;
+  outline: none;
+}
+.maildesk-delete-btn {
+  background-color: #a8abc1;
+  color: white;
+}
+
+/* Get mail list */
+
+.mail-view {
+  background-color: white;
+  height: 90vh;
+}
+.subject-line {
+  border-bottom: 2px solid #b4b4b4;
+}
+.data_scrl {
+  min-height: 92vh;
+  max-height: 92vh;
+  overflow-y: scroll;
+  padding: 3em;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  margin-right: 0.2em;
+}
+
+.data_scrl::-webkit-scrollbar-track {
+  background-color: white;
+}
+.data_scrl::-webkit-scrollbar-button:single-button {
+  background-color: white;
+  border: 3px solid white;
+  color: white;
+}
+/* ::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("../images/up.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("../images/down.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+} */
+.data_scrl::-webkit-scrollbar {
+  width: 0.5em;
+}
+.data_scrl::-webkit-scrollbar-thumb {
+  border: 1px solid grey;
+  background-color: grey;
+  border-radius: 10px;
+  height: 10em;
+}
+.mail-subject-card {
+  border-bottom: 2px solid #e3e3e3;
+  color: #727694;
+  padding: 1.5em 2em;
+  cursor: pointer;
+}
+.card-header-divider {
+  border-top: 2px solid #e3e3e3;
+}
+.mail-subject-card:hover {
+  background-color: #cdcfe1;
+}
+
+/* Add Task Modal */
+
+.task-modal-inpt {
+  border: none;
+}
+.task-modal-inpt:focus {
+  outline: none;
+}
+.task-modal-inpt::placeholder {
+  color: #b4b4b4;
+}
+.task-modal-inpt[type="date"]::placeholder {
+  border: none;
+  color: #b4b4b4;
+}
+.addTask-btn {
+  background-color: #a8abc1;
+  color: #333741;
+}
+.pointer {
+  cursor: pointer;
+}

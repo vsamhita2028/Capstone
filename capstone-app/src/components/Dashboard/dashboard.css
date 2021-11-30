@@ -1,0 +1,18 @@
+.dashboard-container {
+  background-color: #eeeffa;
+  height: 100%;
+}
+.nav-item {
+  font-family: "Poppins";
+  color: #949494;
+  cursor: pointer;
+  font-weight: bold;
+}
+.nav {
+  box-shadow: 0px 2px 50px 0px rgba(202, 202, 202, 0.6);
+  background-color: #ffffff;
+}
+.activeStyle {
+  color: #333741;
+  border-bottom: 5px solid #333741;
+}
