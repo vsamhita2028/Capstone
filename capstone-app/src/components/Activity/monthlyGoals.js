@@ -1,89 +1,45 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Line } from '@ant-design/charts';
-// import TextField from '@mui/material/TextField';
-// import AdapterDateFns from '@mui/lab/AdapterDateFns';
-// import LocalizationProvider from '@mui/lab/LocalizationProvider';
-// import DatePicker from '@mui/lab/DatePicker';
-// import { DualAxes } from '@ant-design/charts';
-// const MonthlyGoals = () => {
-//     const [data, setData] = useState([])
-//     useEffect(() => {
-//         axios.get("http://localhost:5000/activity/getMonthlyGoals", {
-//             params: {
-//                 user: JSON.parse(localStorage.getItem("token")).data.profile.data.emailAddress
-//             }
-//         }).then((result) => {
-//             const data = result.data.result;
-//             console.log(data);
-//             data.sort((a, b) => parseFloat(a.idx) - parseFloat(b.idx));
-//             setData(data);
-//         })
-//     }, [])
-//     const config = {
-//         data: [data, data],
-//         xField: 'month',
-//         yField: ['Total Milestones', 'Completed'],
-//         geometryOptions: [
-//             {
-//                 geometry: 'line',
-//                 smooth: true,
-//                 color: '#5B8FF9',
-//                 lineStyle: {
-//                     lineWidth: 3,
-//                 },
-//             },
-//             {
-//                 geometry: 'line',
-//                 smooth: true,
-//                 color: '#5AD8A6',
-//                 lineStyle: {
-//                     lineWidth: 4,
-//                     opacity: 0.5,
-//                 },
-//                 point: {
-//                     shape: 'circle',
-//                     size: 4,
-//                     style: {
-//                         opacity: 0.5,
-//                         stroke: '#5AD8A6',
-//                         fill: '#fff',
-//                     },
-//                 },
-//             },
-//         ],
-//     };
-//     return (
-//         <div className="container-fluid">
-//             <div className="row">
-//                 <div className="col-12">
-//                     <div className="monthly-goals-cotainer">
-//                         <DualAxes {...config} />
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
 const MonthlyGoals = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    // const [config, setConfig] = useState()
+    const [filterData, setFilterData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    // const [value, setValue] = useState(new Date());
+    const [currentYear, setCurrYear] = useState(new Date().getFullYear())
+    const handleFilterData = (year) => {
+        setCurrYear(year);
+        let filtered = [];
+        data.forEach((elem, idx) => {
+            if (elem.year === parseInt(year)) {
+                filtered.push(elem);
+            }
+        });
+        setFilterData(filtered);
+    }
     useEffect(() => {
         axios.get("http://localhost:5000/activity/getMonthlyGoals", {
             params: {
                 user: JSON.parse(localStorage.getItem("token")).data.profile.data.emailAddress
             }
         }).then((result) => {
-            const data = result.data.result;
-            console.log(data);
-            data.sort((a, b) => parseFloat(a.idx) - parseFloat(b.idx));
-            setData(data);
-            setIsLoading(false)
+            const dataval = result.data.result;
+            console.log(dataval);
+            dataval.sort((a, b) => parseFloat(a.idx) - parseFloat(b.idx));
+            setData(dataval);
+            let filtered = [];
+            dataval.forEach((elem, idx) => {
+                if (elem.year === new Date().getFullYear()) {
+                    filtered.push(elem);
+                }
+            })
+            setFilterData(filtered);
+            setIsLoading(false);
         })
     }, [])
+
     const config = {
-        data,
+        data: filterData,
         xField: 'month',
         yField: 'value',
         seriesField: 'status',
@@ -130,17 +86,7 @@ const MonthlyGoals = () => {
                     <div className="col-12 d-flex justify-content-between align-items-center">
                         <div className="fs-1 fw-bold">Goals</div>
                         <div>
-                            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    views={['year']}
-                                    label="Year only"
-                                    value={value}
-                                    onChange={(newValue) => {
-                                        setValue(newValue);
-                                    }}
-                                    renderInput={(params) => <TextField {...params} helperText={null} />}
-                                />
-                            </LocalizationProvider> */}
+                            <input type="number" className="year-filter-inpt" min="1900" max="2099" step="1" value={currentYear} onChange={(e) => handleFilterData(e.target.value)} />
                         </div>
                     </div>
                 </div>

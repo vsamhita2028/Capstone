@@ -4,20 +4,39 @@ import { Column } from '@ant-design/charts';
 const Monthly = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [filterData, setFilterData] = useState([]);
+    const [currentYear, setCurrYear] = useState(new Date().getFullYear())
+    const handleFilterData = (year) => {
+        setCurrYear(year);
+        let filtered = [];
+        data.forEach((elem, idx) => {
+            if (elem.year === parseInt(year)) {
+                filtered.push(elem);
+            }
+        });
+        setFilterData(filtered);
+    }
     useEffect(() => {
         axios.get("http://localhost:5000/activity/getMonthly", {
             params: {
                 user: JSON.parse(localStorage.getItem("token")).data.profile.data.emailAddress
             }
         }).then((result) => {
-            const data = result.data.result;
-            console.log(data);
-            setData(data);
+            const dataval = result.data.result;
+            console.log(dataval);
+            setData(dataval);
+            let filtered = [];
+            dataval.forEach((elem, idx) => {
+                if (elem.year === new Date().getFullYear()) {
+                    filtered.push(elem);
+                }
+            })
+            setFilterData(filtered);
             setIsLoading(false);
         })
     }, [])
     const config = {
-        data,
+        data: filterData,
         isStack: true,
         xField: 'month',
         yField: 'value',
@@ -46,9 +65,12 @@ const Monthly = () => {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-12 fs-1 fw-bold">
-                        <div className="">
+                    <div className="col-12 d-flex justify-content-between align-items-center ">
+                        <div className="fs-1 fw-bold">
                             Tasks
+                        </div>
+                        <div>
+                            <input type="number" className="year-filter-inpt" min="1900" max="2099" step="1" value={currentYear} onChange={(e) => handleFilterData(e.target.value)} />
                         </div>
                     </div>
                 </div>

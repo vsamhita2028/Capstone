@@ -42,15 +42,15 @@ const Activity = () => {
                 <div className="row ms-1" >
                     <div className="col-4 mt-2">
                         <div className="row">
-                            <div className="col-12 calendar-card p-3">
-                                <div className="row">
-                                    <div className="col-12 fs-1 fw-bold">
+                            <div className="col-12 calendar-card" style={{ padding: 5 }}>
+                                <div className="row p-3">
+                                    <div className="col-12 fs-1 px-3 fw-bold">
                                         Schedule
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-12">
-                                        <div className="calender-scrl">
+                                        <div className="calender-scrl pe-4">
                                             <Scheduler
                                                 data={data}
                                             >
@@ -81,14 +81,14 @@ const Activity = () => {
                                 </div>
                             </div>
                             <div className="col-6">
-                                <div className="row-1-cards mt-2">
+                                <div className="row-1-cards mt-2 p-2">
                                     <MonthlyGoals />
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-12">
-                                <div className="row-2-cards mt-2" style={{ height: "19em" }}>
+                                <div className="row-2-cards mt-2 p-3" style={{ height: "19em" }}>
                                     <Monthly />
                                 </div>
                             </div>

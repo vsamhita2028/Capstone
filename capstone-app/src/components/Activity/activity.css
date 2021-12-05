@@ -14,10 +14,11 @@
 }
 .calender-scrl {
   min-height: 20vh;
-  max-height: 75vh;
+  max-height: 74vh;
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: white;
+  border-top: 1px solid rgb(197, 197, 197);
 }
 
 .calender-scrl::-webkit-scrollbar-track {
@@ -54,7 +55,7 @@
 }
 .mothly-progress-cotainer {
   max-height: 10em;
-  height: 13.5em;
+  height: 12em;
   padding: 1em;
 }
 .monthly-goals-cotainer {
@@ -70,4 +71,12 @@
   margin-top: 3.5em;
   display: flex;
   align-items: center;
+}
+.year-filter-inpt {
+  border-radius: 10px;
+  padding: 0.5em 0.5em;
+  border: 2px solid grey;
+}
+.year-filter-inpt:focus {
+  outline: none;
 }

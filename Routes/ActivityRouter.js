@@ -132,7 +132,7 @@ activityRouter.route("/getMonthly")
         },
         {
             $group: {
-                _id: { month: { $month: "$date" }, status: "$status" },
+                _id: { month: { $month: "$date" }, year: { $year: "$date" }, status: "$status" },
                 count: { $sum: 1 }
             }
         },
@@ -141,7 +141,7 @@ activityRouter.route("/getMonthly")
             $group: {
                 _id: null,
                 counts: {
-                    $push: { status: "$_id.status", month: "$_id.month", value: "$count" }
+                    $push: { status: "$_id.status", month: "$_id.month", year: "$_id.year", value: "$count" }
                 }
             }
         },
@@ -176,7 +176,7 @@ activityRouter.route("/getMonthlyGoals")
         },
         {
             $group: {
-                _id: { month: { $month: "$startDate" }, status: "$status" },
+                _id: { month: { $month: "$startDate" }, year: { $year: "$startDate" }, status: "$status" },
                 count: { $sum: 1 }
             }
         },
@@ -185,7 +185,7 @@ activityRouter.route("/getMonthlyGoals")
             $group: {
                 _id: null,
                 counts: {
-                    $push: { status: "$_id.status", month: "$_id.month", value: "$count" }
+                    $push: { status: "$_id.status", month: "$_id.month", year: "$_id.year", value: "$count" }
                 }
             }
         },
