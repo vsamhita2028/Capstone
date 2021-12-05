@@ -64,7 +64,9 @@ const DragNDrop = ({ mainData, setIsLoading, fetchData, dataCategory, setDataCat
         datetext = endDate.toTimeString();
         data["endDate"] = datetext.split(' ')[0];
         let newDate = new Date(data["date"]);
-        data["date"] = newDate.getFullYear() + "-" + (newDate.getMonth() + 1) + "-" + newDate.getDate()
+        let mm = (newDate.getMonth() + 1) < 10 ? "0" + (newDate.getMonth() + 1) : (newDate.getMonth() + 1)
+        let dd = (newDate.getDate()) < 10 ? "0" + (newDate.getDate()) : (newDate.getDate())
+        data["date"] = newDate.getFullYear() + "-" + mm + "-" + dd;
         setViewCardData(data);
         setOffCanvas(true);
     }
@@ -81,11 +83,15 @@ const DragNDrop = ({ mainData, setIsLoading, fetchData, dataCategory, setDataCat
     }
     const timeParser = (time) => {
         let date = new Date(time);
-        return date.getHours() + ":" + date.getMinutes();
+        let hh = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        let mm = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        return hh + ":" + mm;
     }
     const dateParser = (dateString) => {
         let date = new Date(dateString);
-        return date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+        let dd = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        let mm = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        return dd + "-" + mm + "-" + date.getFullYear();
     }
     return (
         <div className="row">
@@ -120,7 +126,7 @@ const DragNDrop = ({ mainData, setIsLoading, fetchData, dataCategory, setDataCat
                                     </div>
                                 </div>
                                 <div className="task-description mt-3" onClick={(e) => handleOffCanvas(e, { grpIdx, taskIdx })}>
-                                    {taskElem.description}
+                                    <div className="text-truncate" style={{ maxWidth: "inherit" }}>{taskElem.description}</div>
                                 </div>
                                 <div className="d-flex justify-content-between mt-3" onClick={(e) => handleOffCanvas(e, { grpIdx, taskIdx })}>
                                     {dataCategory !== "today" && <div onClick={(e) => handleOffCanvas(e, { grpIdx, taskIdx })}>

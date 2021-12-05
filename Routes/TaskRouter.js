@@ -15,13 +15,17 @@ taskRouter.route("/getTask")
     .get((req, res) => {
 
         const param = req.query;
+        console.log(param);
         var start = new Date(param.start);
+        start.setHours(0, 0, 0, 0);
         var end = new Date(param.end);
+        end.setHours(23, 59, 59, 999);
+        console.log(start, end);
         Task.aggregate([
             {
                 $match: {
                     user: param.user,
-                    date: { $gte: start, $lt: end }
+                    date: { $gt: start, $lt: end }
                 }
             },
             {
@@ -45,6 +49,7 @@ taskRouter.route("/getTask")
             if (err) {
                 console.log(err);
             } else {
+                console.log(result);
                 res.send({ result: result });
             }
         })

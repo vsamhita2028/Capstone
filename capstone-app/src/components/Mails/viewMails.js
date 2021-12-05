@@ -35,6 +35,7 @@ const ViewMails = ({ categoryData, activeCategory, setIsLoading, fetchData, setG
                                     <IconContext.Provider value={{ size: "50px", color: "#a8abc1" }}>
                                         <MdAdd />
                                     </IconContext.Provider>
+                                    <div className="mt-2">Add Mail desk</div>
                                 </div>
                             </div>
                         )

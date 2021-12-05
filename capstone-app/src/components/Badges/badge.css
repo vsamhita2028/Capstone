@@ -1,4 +1,14 @@
 .badge-card {
   background-color: white;
-  height: 10em;
+  border-radius: 15px;
+}
+.badges-header {
+  color: #333741;
+  font-weight: bold;
+}
+.date-filter {
+  border: none;
+  padding: 0.7em 0.5em;
+  border-radius: 10px;
+  color: #636977;
 }

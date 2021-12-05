@@ -116,7 +116,6 @@ const Tasks = () => {
         return (<div>Loading...</div>);
     } else {
         return (
-
             <div className="container-fluid my-4">
                 <div className="row">
                     <div className="col-6 d-flex">
@@ -131,7 +130,7 @@ const Tasks = () => {
                         <button className="btn add-task-btn rounded-pill" onClick={() => { setVisibility(true) }}>Add Task</button>
                     </div>
                 </div>
-                <div className="row mt-4">
+                <div className="row mt-4 ">
                     {taskData && <DragNDrop mainData={taskData} setIsLoading={setIsLoading} fetchData={fetchData} dataCategory={dataCategory} setDataCategory={setDataCategory} />}
                 </div>
                 {modal === true ? <TaskModal setVisibility={setVisibility} setIsLoading={setIsLoading} fetchData={fetchData} /> : " "}

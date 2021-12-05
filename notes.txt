@@ -19,3 +19,22 @@ OUTFGYKP9YaitvgiJ6M0afRC
 MOngoDB
 user
 RidT4nebinJ6DAfj
+
+
+https://www.flaticon.com/premium-icon/college_3227076?term=badge&page=1&position=9&page=1&position=9&related_id=3227076&origin=search
+https://www.flaticon.com/premium-icon/award_1959455?term=badge&page=1&position=26&page=1&position=26&related_id=1959455&origin=search
+Prathyusha Kalive11:40 PM
+https://www.flaticon.com/premium-icon/medal_2058929?term=medal&page=1&position=8&page=1&position=8&related_id=2058929&origin=search
+https://www.flaticon.com/premium-icon/trophy_3113025?term=trophy&page=1&position=26&page=1&position=26&related_id=3113025&origin=search
+Prathyusha Kalive11:45 PM
+https://www.flaticon.com/premium-icon/medal_3113151?related_id=3113151
+
+
+// Colors for goals cards
+
+C449C2
+B088F9
+B590CA
+D19FEB
+
+//Delete Warning : red: FA4659

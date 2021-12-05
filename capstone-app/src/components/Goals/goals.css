@@ -2,6 +2,15 @@
   cursor: pointer;
 }
 /* Goals.js */
+.goals-header {
+  color: #333741;
+  font-weight: bold;
+}
+.add-goals-btn {
+  color: #eeeffa;
+  background-color: #636977;
+  padding: 1em 2em;
+}
 .goal-data-scrl {
   min-height: 20vh;
   max-height: 77vh;
@@ -45,42 +54,58 @@
   overflow-y: hidden;
 }
 /* Goals Modal  */
-
+.modal-border {
+  border-radius: 30px;
+}
+.goals-header-inpt {
+  border: none;
+  color: #636977;
+}
+.goals-header-inpt:focus {
+  outline: none;
+}
 .goals-modal-inpt {
   border: none;
+  padding: 0.7em 0.5em;
+  border-radius: 10px;
+  color: #636977;
 }
-
 .goals-modal-inpt:focus {
   outline: none;
 }
+.add-goals-container {
+  background-color: #eeeffa;
+  font-weight: bold;
+  color: #636977;
+  border-radius: 4px;
+}
 .badge-box {
-  background-color: grey;
+  /* box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.09); */
+  background-color: white;
   height: 5em;
   border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .goals-color-circle {
   cursor: pointer;
-  border: 2px solid rgb(196, 190, 190);
+  border: 2px solid #eeeffa;
 }
 .goals-color-circle:hover {
   cursor: pointer;
   box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.09);
 }
 .activeclass {
-  border: 2px solid #0099ff;
+  border: 3px solid #a8abc1;
   /* background-color: aqua; */
 }
-.goals-date-picker {
-  border-radius: 5px;
-  border: 2px solid rgb(196, 190, 190);
-  padding: 0.2em;
-  color: #6b6b6b;
+.goals-submit-btn {
+  color: #eeeffa;
+  background-color: #636977;
+  padding: 1em 2em;
 }
-.goals-date-picker::-webkit-calendar-picker-indicator {
-  filter: invert(0.5);
-}
-
 /* Goals Card */
 
 .goal-card {
@@ -89,7 +114,7 @@
   color: #6b6b6b;
 }
 .goal-card-date {
-  font-size: 12px;
+  font-size: 15px;
 }
 .goal-status-pill {
   padding: 5px;
@@ -102,7 +127,9 @@
 }
 
 /* Goals offcanvas */
-
+.offcanvas-goals-bg {
+  background-color: #eeeffa;
+}
 .goals-offcanvas {
   z-index: 11;
   position: fixed;
@@ -117,33 +144,58 @@
   left: 0;
   height: 100%;
   padding: 2em;
+  color: #6b6b6b;
+  font-weight: bold;
 }
 
 .goals-offcanvas-heading {
-  font-weight: 600;
-  color: #6b6b6b;
-  font-size: 24px;
+  background-color: #eeeffa;
+  font-weight: bold;
 }
 .goals-offcanvas-description {
   word-wrap: break-word;
   word-break: break-word;
   font-weight: 500;
-  color: #6b6b6b;
   font-size: 14px;
 }
 .goals-offcanvas-back-btn {
-  font-weight: 600;
-  color: #6b6b6b;
-  font-size: 24px;
+  font-size: 30px;
 }
 .goals-offcanvas-sm-txt {
   font-weight: 300;
-  color: #6b6b6b;
   font-size: 12px;
+}
+.goals-offcanvas-sbt-btn {
+  color: #eeeffa;
+  background-color: #636977;
+  padding: 1em 2em;
 }
 .goals-offcanvas-input {
   border: none;
+
+  padding: 0.7em 0.5em;
+  border-radius: 10px;
+  color: #636977;
 }
 .goals-offcanvas-input:focus {
   outline: none;
+}
+.warning-bubble {
+  background-color: rgb(236, 113, 113);
+  color: red;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+.back {
+  position: absolute;
+  z-index: 1;
+  margin-top: 10rem;
+}
+.front {
+  position: absolute;
+  z-index: 3;
+}
+.middle {
+  position: absolute;
+  z-index: inherit;
 }

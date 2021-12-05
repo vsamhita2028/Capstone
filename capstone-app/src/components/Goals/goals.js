@@ -14,6 +14,11 @@ import GoalsModal from "./addGoalsModal";
 import axios from "axios";
 import GoalsOffCanvas from "./goalsOffCanvas";
 import GoalsCard from "./goalsCard";
+import badge1 from "../../images/medal1.png"
+import badge2 from "../../images/medal2.png"
+import badge3 from "../../images/medal3.png"
+import badge4 from "../../images/medal4.png"
+import badge5 from "../../images/medal5.png"
 // import { BsChevronDown } from "react-icons/bs";
 // [{
 //     title: 'Website Re-Design Plan',
@@ -32,6 +37,7 @@ import GoalsCard from "./goalsCard";
 
 
 const Goals = () => {
+    let badges = [{ url: badge1, id: 0 }, { url: badge2, id: 1 }, { url: badge3, id: 2 }, { url: badge4, id: 3 }, { url: badge5, id: 4 }]
     let today = new Date();
     let dd = String(today.getDate());
     let mm = String(today.getMonth() + 1); //January is 0!
@@ -102,10 +108,10 @@ const Goals = () => {
         <div className="container-fluid" style={{ margin: 0, padding: 0 }}>
             <div className="row mt-2" >
                 <div className="col-4">
-                    <div className={"row"}>
+                    <div className={"row px-2"}>
                         <div className="col-12 mt-3 d-flex justify-content-between">
-                            <span className="fs-4">Monthly Milestones</span>
-                            <button className="btn btn-primary float-end" onClick={() => setModalVisibility(true)} > Add </button>
+                            <span className="fs-2 goals-header">Monthly Milestones</span>
+                            <button className="btn rounded-pill float-end add-goals-btn" onClick={() => setModalVisibility(true)} > Add </button>
                         </div>
                     </div>
                     <div className="row mt-4">
@@ -115,7 +121,7 @@ const Goals = () => {
                                     setEditGoalsView={setEditGoalsView}
                                     setEditGoalsData={setEditGoalsData}
                                     dateParser={dateParser} setIsLoading={setIsLoading}
-                                    fetchData={fetchData} currentDate={currentDate} />
+                                    fetchData={fetchData} currentDate={currentDate} badges={badges} />
                             </div>
                         </div>
                     </div>
@@ -142,8 +148,8 @@ const Goals = () => {
 
                 </div>
             </div>
-            {modalVisibility && <GoalsModal setModalVisibility={setModalVisibility} fetchData={fetchData} setIsLoading={setIsLoading} today={today} />}
-            {editGoalsView && <GoalsOffCanvas setEditGoalsView={setEditGoalsView} editGoalsData={editGoalsData} setIsLoading={setIsLoading} fetchData={fetchData} />}
+            {modalVisibility && <GoalsModal setModalVisibility={setModalVisibility} fetchData={fetchData} setIsLoading={setIsLoading} today={today} badges={badges} />}
+            {editGoalsView && <GoalsOffCanvas setEditGoalsView={setEditGoalsView} editGoalsData={editGoalsData} setIsLoading={setIsLoading} fetchData={fetchData} today={today} badges={badges} />}
         </div>
     );
 }

@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <div className="container-fluid dashboard-container">
       <div className="row" >
-        <div className="col-12" style={{ width: "100%", padding: 0, margin: 0 }}>
+        <div className="col-12" style={{ padding: 0, margin: 0 }}>
           <ul className="nav nav-pills nav-fill p-4">
             <li className="nav-item" onClick={() => setWindowNum(1)}  >
               <span className={windowNum === 1 ? "activeStyle p-3" : ""}>MAILS</span>

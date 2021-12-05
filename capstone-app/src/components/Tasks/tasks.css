@@ -3,7 +3,7 @@
 .status-col-util {
   background-color: #ffffff;
   border-radius: 20px;
-  min-height: max-content;
+  min-height: 73vh;
   padding: 1em;
 }
 .add-task-btn {
@@ -11,12 +11,41 @@
   background-color: #636977;
   padding: 1em 1.5em;
 }
+[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  color: white;
+  background-color: #9c9688;
+  border-radius: 5px;
+  padding: 0.1em;
+}
+[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  color: white;
+  background-color: #9c9688;
+  border-radius: 5px;
+}
 /* For TaskModal.css */
+/* label {
+  color: #636977;
+} */
 .task-modal-inpt {
   border: none;
+  padding: 0.7em 0.5em;
+  border-radius: 10px;
+  color: #636977;
 }
 .task-modal-inpt:focus {
   outline: none;
+}
+.task-modal-sub-btn {
+  color: #eeeffa;
+  background-color: #636977;
+  padding: 1em 2em;
+}
+.modal-body-bg {
+  background-color: #eeeffa;
+  font-weight: bold;
+  color: #636977;
 }
 /* For DND TAsk */
 .main-heading {
@@ -71,38 +100,47 @@
   right: 0;
   height: 100%;
   padding: 2em;
+  background-color: #eeeffa;
+  font-weight: bold;
+  color: #636977;
+  overflow-y: hidden;
 }
 
 .task-offcanvas-heading {
-  font-weight: 600;
-  color: #6b6b6b;
-  font-size: 24px;
+  background-color: #eeeffa;
+  font-weight: bold;
 }
 .task-offcanvas-description {
   word-wrap: break-word;
   word-break: break-word;
   font-weight: 500;
-  color: #6b6b6b;
   font-size: 14px;
 }
+.task-offcanvas-sbt-btn {
+  color: #eeeffa;
+  background-color: #636977;
+  padding: 1em 2em;
+}
 .task-offcanvas-back-btn {
-  font-weight: 600;
-  color: #6b6b6b;
-  font-size: 24px;
+  font-size: 30px;
 }
 .task-offcanvas-sm-txt {
   font-weight: 300;
-  color: #6b6b6b;
   font-size: 12px;
 }
 .task-offcanvas-input {
   border: none;
+
+  padding: 0.7em 0.5em;
+  border-radius: 10px;
+  color: #636977;
 }
 .task-offcanvas-input:focus {
   outline: none;
 }
-div[contenteditable] {
-  border: 1px solid black;
-  max-height: 200px;
-  overflow: auto;
+.warning-bubble {
+  background-color: #fa4659;
+  color: #c02737;
+  border-radius: 5px;
+  padding: 0.5em;
 }

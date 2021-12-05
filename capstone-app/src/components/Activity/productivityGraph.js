@@ -40,8 +40,8 @@ const Productivity = () => {
             if (Todaytotal === 0) Todaytotal = 1;
             if (yestotal === 0) yestotal = 1;
             const val = parseInt((Todayprog / Todaytotal) * 100);
-            const val2 = parseFloat(((val / 100) - (yescompleted / yestotal)) * 100).toFixed(1);
             const perc = Todaycompleted / Todaytotal;
+            const val2 = parseInt(((perc) - (yescompleted / yestotal)) * 100);
             console.log("val", perc);
             console.log(val2)
             setData(val);
@@ -52,7 +52,7 @@ const Productivity = () => {
         })
     }, [])
 
-    const config = {
+    let config = {
         autoFit: true,
         percent: percentage,
         color: ['#F4664A', '#E8EDF3'],
@@ -70,46 +70,66 @@ const Productivity = () => {
         },
     }
     if (isLoading) {
-        return (<div>Loading...</div>)
+        config = {
+            autoFit: true,
+            percent: percentage,
+            color: ['#F4664A', '#E8EDF3'],
+            innerRadius: 0.85,
+            radius: 0.98,
+            statistic: {
+                title: {
+                    style: {
+                        color: '#363636',
+                        fontSize: '12px',
+                        lineHeight: '14px',
+                    },
+                    formatter: () => 'Productivity',
+                },
+            },
+        }
+        return (<div className="d-flex justify-content-center align-items-center" style={{ padding: 0, margin: 0, height: "inherit" }}>
+            <lottie-player src="https://assets7.lottiefiles.com/private_files/lf30_v3Lu1q.json" background="transparent" speed="1" style={{ width: "300px", height: "300px" }} loop autoplay></lottie-player>
+        </div>)
+    } else {
+        return (
+            <div className="container-fluid">
+                <div className="row" style={{ padding: 0, margin: 0 }}>
+                    <div className="col-12 progress-container" style={{ padding: 0, margin: 0 }}>
+                        <RingProgress {...config} />
+                    </div>
+                </div>
+                <div className="row mt-4">
+                    <div className="col-12 fw-bold lh-1" style={{ padding: 0, margin: 0 }} >
+                        <div className="row" >
+                            <div className="col-3 d-flex align-items-center" style={{ padding: 0, margin: 0 }}>
+                                <span className="fs-4 text-success ps-2 ">{data}%</span>
+                            </div>
+                            <div className="col-9" >
+                                <span style={{ fontSize: "10px" }}>Complete the tasks you have started and boost your productivity.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row mt-3">
+                    <div className="col-12 fw-bold lh-1" style={{ padding: 0, margin: 0 }} >
+                        <div className="row" >
+                            <div className="col-3 d-flex align-items-center" style={{ padding: 0, margin: 0 }}>
+                                {yesProductivity > 0 && <span className="fs-4 text-success ps-2 ">{yesProductivity}%</span>}
+                                {yesProductivity < 0 && <span className="fs-4 text-danger ps-2 ">{-1 * yesProductivity}%</span>}
+                            </div>
+                            <div className="col-9" >
+                                {yesProductivity > 0 && <span style={{ fontSize: "10px" }}>Your Productivity is higher today</span>}
+                                {yesProductivity < 0 && <span style={{ fontSize: "10px" }}>You have a lower productivity today</span>}
+                                {yesProductivity === 0 && <span style={{ fontSize: "10px" }}>You are productivity constistent</span>}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        );
     }
-    return (
-        <div className="container-fluid">
-            <div className="row" style={{ padding: 0, margin: 0 }}>
-                <div className="col-12 progress-container" style={{ padding: 0, margin: 0 }}>
-                    <RingProgress {...config} />
-                </div>
-            </div>
-            <div className="row mt-4">
-                <div className="col-12 fw-bold lh-1" style={{ padding: 0, margin: 0 }} >
-                    <div className="row" >
-                        <div className="col-3 d-flex align-items-center" style={{ padding: 0, margin: 0 }}>
-                            <span className="fs-4 text-success ps-2 ">{data}%</span>
-                        </div>
-                        <div className="col-9" >
-                            <span style={{ fontSize: "10px" }}>Complete the tasks you have started and boost your productivity.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row mt-3">
-                <div className="col-12 fw-bold lh-1" style={{ padding: 0, margin: 0 }} >
-                    <div className="row" >
-                        <div className="col-3 d-flex align-items-center" style={{ padding: 0, margin: 0 }}>
-                            {yesProductivity > 0 && <span className="fs-4 text-success ps-2 ">{yesProductivity}%</span>}
-                            {yesProductivity < 0 && <span className="fs-4 text-danger ps-2 ">{-1 * yesProductivity}%</span>}
-                        </div>
-                        <div className="col-9" >
-                            {yesProductivity > 0 && <span style={{ fontSize: "10px" }}>Your Productivity is higher today</span>}
-                            {yesProductivity < 0 && <span style={{ fontSize: "10px" }}>You have a lower productivity today</span>}
-                            {yesProductivity === 0 && <span style={{ fontSize: "10px" }}>You are constistently productivity</span>}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    );
 }
 
 export default Productivity;

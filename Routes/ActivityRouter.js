@@ -78,27 +78,28 @@ activityRouter.route("/goalsProductivity")
                 resultData["data"] = result
                 //res.send({ result: result });
             }
-        })
-        Goals.aggregate([{
-            $match: {
-                user: params,
-                endDate: { $lt: today },
-                status: { $in: ["In Progress", "Not Started"] }
-            }
-        },
-        {
-            $group: {
-                _id: null,
-                n: { $sum: 1 }
-            }
-        }], (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(result);
-                resultData["missed"] = result[0].n;
-                res.send({ result: resultData });
-            }
+        }).then(() => {
+            Goals.aggregate([{
+                $match: {
+                    user: params,
+                    endDate: { $lt: today },
+                    status: { $in: ["In Progress", "Not Started"] }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    n: { $sum: 1 }
+                }
+            }], (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(result);
+                    resultData["missed"] = result[0].n;
+                    res.send({ result: resultData });
+                }
+            })
         })
     })
 activityRouter.route("/getTasks")
