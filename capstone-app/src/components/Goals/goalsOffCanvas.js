@@ -7,7 +7,7 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
     const [milestoneData, setMileStoneData] = useState(editGoalsData)
     const Modalstyle = { backgroundColor: 'rgba(0,0,0,0.8)' }
     const colors = ["#C449C2", "#B088F9", "#B590CA", "#D19FEB"];
-    const [warning, setwarning] = useState(false);
+    const [warning, setwarning] = useState(0);
     const dateParser = (dateVal) => {
         let today = new Date(dateVal);
         let dd = String(today.getDate());
@@ -20,7 +20,10 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
     }
     const handleUpdate = (e) => {
         e.preventDefault();
-        if (milestoneData.badgeId && milestoneData.color && milestoneData.endDate && milestoneData.startDate && milestoneData.status && milestoneData.title) {
+        if (milestoneData.startDate >= milestoneData.endDate) {
+            setwarning(2);
+        }
+        else if (milestoneData.badgeId && milestoneData.color && milestoneData.endDate && milestoneData.startDate && milestoneData.status && milestoneData.title) {
             const data = {
                 _id: milestoneData._id,
                 updateData: {
@@ -43,7 +46,7 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
                     fetchData();
                 })
         } else {
-            setwarning(true);
+            setwarning(1);
         }
 
     }
@@ -57,19 +60,29 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
                                 <div className="row">
                                     <div className="col-12 d-flex justify-content-between align-items-center">
                                         <div>
-                                            <input type="text" className="goals-offcanvas-input goals-offcanvas-heading fs-1 w-75" placeholder="Title..." onChange={(e) => setMileStoneData({ ...milestoneData, title: e.target.value })} value={milestoneData.title} />
+                                            <input type="text" className="goals-offcanvas-input goals-offcanvas-heading fs-1 w-75" placeholder="Title" onChange={(e) => setMileStoneData({ ...milestoneData, title: e.target.value })} value={milestoneData.title} />
                                         </div>
                                         <IconContext.Provider value={{ className: "goals-offcanvas-back-btn" }}>
                                             <div className="float-end" onClick={() => setEditGoalsView(false)} ><IoIosArrowBack /></div>
                                         </IconContext.Provider>
                                     </div>
                                 </div>
-                                {warning &&
+                                {warning === 1 &&
                                     <div className="row">
                                         <div className="col-12">
                                             <div className="warning-bubble d-flex justify-content-between">
                                                 <span>Please fill all the fields :)</span>
-                                                <span><button type="button" className="btn-close" onClick={() => setwarning(false)}></button></span>
+                                                <span><button type="button" className="btn-close" onClick={() => setwarning(0)}></button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                {warning === 2 &&
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className="warning-bubble d-flex justify-content-between">
+                                                <span>Start Date is grater than or equal to end Date</span>
+                                                <span><button type="button" className="btn-close" onClick={() => setwarning(0)}></button></span>
                                             </div>
                                         </div>
                                     </div>
@@ -91,15 +104,27 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
                                                 <label>Badges</label>
                                             </div>
                                             {badges && badges.map((elem, idx) => {
-                                                return (
-                                                    <div className="col-6 mt-2" key={idx}>
-                                                        <div
-                                                            onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
-                                                            className={milestoneData.badgeId === elem.id ? "badge-box activeclass mx-3" : "badge-box mx-3"}>
-                                                            <img src={elem.url} alt="img" height="50" width="50" />
+                                                if (idx !== badges.length - 1) {
+                                                    return (
+                                                        <div className="col-6 mt-2" key={idx}>
+                                                            <div
+                                                                onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
+                                                                className={milestoneData.badgeId === elem.id ? "badge-box activeclass mx-3" : "badge-box mx-3"}>
+                                                                <img src={elem.url} alt="img" height="50" width="50" />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )
+                                                    )
+                                                } else {
+                                                    return (
+                                                        <div className="col-12 mt-2 d-flex justify-content-center " key={idx}>
+                                                            <div
+                                                                onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
+                                                                className={milestoneData.badgeId === elem.id ? "badge-box activeclass extra-padding" : "badge-box extra-padding"}>
+                                                                <img src={elem.url} alt="img" height="50" width="50" />
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
                                             })}
                                         </div>
                                         <div className="row mt-2">

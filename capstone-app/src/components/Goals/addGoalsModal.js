@@ -3,7 +3,7 @@ import "./goals.css";
 import axios from "axios";
 const GoalsModal = ({ setModalVisibility, fetchData, setIsLoading, today, badges }) => {
     const Modalstyle = { display: "block", backgroundColor: 'rgba(0,0,0,0.8)' }
-    const [warning, setwarning] = useState(false);
+    const [warning, setwarning] = useState(0);
     const [milestoneData, setMileStoneData] = useState({
         user: JSON.parse(localStorage.getItem("token")).data.profile.data.emailAddress,
         title: '',
@@ -17,7 +17,10 @@ const GoalsModal = ({ setModalVisibility, fetchData, setIsLoading, today, badges
     // const colors = ["#E99497", "#F3C583", "#E8E46E", "#B3E283"];
     const handelSubmit = () => {
         console.log(milestoneData);
-        if (milestoneData.title && milestoneData.startDate && milestoneData.endDate && milestoneData.badgeId && milestoneData.color) {
+        if (milestoneData.startDate >= milestoneData.endDate) {
+            setwarning(2)
+        }
+        else if (milestoneData.title && milestoneData.startDate && milestoneData.endDate && milestoneData.badgeId && milestoneData.color) {
             axios.post("http://localhost:5000/goals", milestoneData)
                 .then((result) => {
                     console.log(result)
@@ -27,7 +30,7 @@ const GoalsModal = ({ setModalVisibility, fetchData, setIsLoading, today, badges
                     fetchData();
                 })
         } else {
-            setwarning(true);
+            setwarning(1);
         }
     }
     return (
@@ -41,12 +44,22 @@ const GoalsModal = ({ setModalVisibility, fetchData, setIsLoading, today, badges
                         </div>
                         <div className="modal-body add-goals-container">
                             <div className="container">
-                                {warning &&
+                                {warning === 1 &&
                                     <div className="row">
                                         <div className="col-12">
                                             <div className="warning-bubble d-flex justify-content-between">
                                                 <span>Please fill all the fields :)</span>
-                                                <span><button type="button" className="btn-close" onClick={() => setwarning(false)}></button></span>
+                                                <span><button type="button" className="btn-close" onClick={() => setwarning(0)}></button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                {warning === 2 &&
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className="warning-bubble d-flex justify-content-between">
+                                                <span>Start Date is grater than or equal to end Date</span>
+                                                <span><button type="button" className="btn-close" onClick={() => setwarning(0)}></button></span>
                                             </div>
                                         </div>
                                     </div>
@@ -78,15 +91,27 @@ const GoalsModal = ({ setModalVisibility, fetchData, setIsLoading, today, badges
                                         <label>Badges</label>
                                     </div>
                                     {badges && badges.map((elem, idx) => {
-                                        return (
-                                            <div className="col-6 mt-2" key={idx}>
-                                                <div
-                                                    onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
-                                                    className={milestoneData.badgeId === elem.id ? "badge-box activeclass mx-3" : "badge-box mx-3"}>
-                                                    <img src={elem.url} alt="img" height="50" width="50" />
+                                        if (idx !== badges.length - 1) {
+                                            return (
+                                                <div className="col-6 mt-2" key={idx}>
+                                                    <div
+                                                        onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
+                                                        className={milestoneData.badgeId === elem.id ? "badge-box activeclass mx-3" : "badge-box mx-3"}>
+                                                        <img src={elem.url} alt="img" height="50" width="50" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )
+                                            )
+                                        } else {
+                                            return (
+                                                <div className="col-12 mt-2 d-flex justify-content-center " key={idx}>
+                                                    <div
+                                                        onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
+                                                        className={milestoneData.badgeId === elem.id ? "badge-box activeclass extra-padding" : "badge-box extra-padding"}>
+                                                        <img src={elem.url} alt="img" height="50" width="50" />
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
                                     })}
                                 </div>
                                 <div className="row mt-2">

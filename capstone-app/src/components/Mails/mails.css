@@ -2,6 +2,11 @@
 .add-category-btn {
   background-color: #636977;
   padding: 1.2em 1em;
+  line-height: 4em;
+}
+.add-category-submit-btn {
+  color: #eeeffa;
+  background-color: #636977;
 }
 .category-pill {
   /* box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.05); */
@@ -11,7 +16,7 @@
   margin: 0em 0.8rem;
   cursor: pointer;
   white-space: nowrap;
-  line-height: 3em;
+  line-height: 4em;
   background-color: #cbcde7;
   color: #636977;
   font-weight: bold;
@@ -51,6 +56,7 @@
 }
 .center-elem {
   display: flex;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
@@ -64,9 +70,15 @@
   background-color: #a8abc1;
   color: white;
 }
-
+.add-maildsk-submit-btn {
+  color: #eeeffa;
+  padding: 1em 2em;
+  background-color: #636977;
+}
 /* Get mail list */
-
+.inbox-headers {
+  color: #636977;
+}
 .mail-view {
   background-color: white;
   height: 90vh;
@@ -128,16 +140,22 @@
 
 .task-modal-inpt {
   border: none;
+  padding: 0.7em 0.5em;
+  border-radius: 10px;
+  color: #636977;
 }
 .task-modal-inpt:focus {
   outline: none;
 }
-.task-modal-inpt::placeholder {
-  color: #b4b4b4;
+.task-modal-sub-btn {
+  color: #eeeffa;
+  background-color: #636977;
+  padding: 1em 2em;
 }
-.task-modal-inpt[type="date"]::placeholder {
-  border: none;
-  color: #b4b4b4;
+.modal-body-bg {
+  background-color: #eeeffa;
+  font-weight: bold;
+  color: #636977;
 }
 .addTask-btn {
   background-color: #a8abc1;
@@ -145,4 +163,24 @@
 }
 .pointer {
   cursor: pointer;
+}
+
+/* Delete Mail Desk  */
+.delete-txt {
+  color: #fa4659;
+}
+.warning-conatiner {
+  background-color: #ffceb1;
+  border-left: 4px solid #d75e4f;
+  border-radius: 5px;
+}
+.warning-header {
+  color: #ac070a;
+}
+.warning-content {
+  color: #d75e4f;
+}
+.btn-grey {
+  background-color: #636977;
+  color: white;
 }

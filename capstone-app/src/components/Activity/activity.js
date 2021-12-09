@@ -32,6 +32,20 @@ const Activity = () => {
             setIsLoading(false);
         })
     }, [])
+    const Appointment = ({
+        children, style, ...restProps
+    }) => (
+        <Appointments.Appointment
+            {...restProps}
+            style={{
+                ...style,
+                backgroundColor: '#B590CA',
+                borderRadius: '8px',
+            }}
+        >
+            {children}
+        </Appointments.Appointment>
+    );
     if (isLoading) {
         return (
             <div>Loading...</div>
@@ -44,7 +58,7 @@ const Activity = () => {
                         <div className="row">
                             <div className="col-12 calendar-card" style={{ padding: 5 }}>
                                 <div className="row p-3">
-                                    <div className="col-12 fs-1 px-3 fw-bold">
+                                    <div className="col-12 fs-1 px-3 fw-bold activity-headers">
                                         Schedule
                                     </div>
                                 </div>
@@ -58,7 +72,8 @@ const Activity = () => {
                                                     startDayHour={0}
                                                     endDayHour={24}
                                                 />
-                                                <Appointments />
+                                                <Appointments
+                                                    appointmentComponent={Appointment} />
                                                 <AppointmentTooltip />
                                             </Scheduler>
                                         </div>

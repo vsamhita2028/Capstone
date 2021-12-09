@@ -29,6 +29,7 @@ const Mails = () => {
             setIsLoading(true);
             toggleAddCategoryCard(false);
             setCategory("");
+            setActiveCategory({ category: "All", index: -1 })
         }).then((result) => {
             fetchData()
         })
@@ -57,6 +58,8 @@ const Mails = () => {
             setDeleteWarning(false);
             setIsLoading(true);
         }).then(() => {
+            setGetMailList(false);
+            setActiveCategory({ category: "All", index: -1 })
             fetchData();
         })
     }
@@ -69,36 +72,36 @@ const Mails = () => {
                 {!getMailList ? <div className="container">
                     <div className="row">
                         <div className="col-12 mt-5">
-                            <div className="mail-desk-headers mb-5 mx-5">Mail Desks</div>
-                            {/* <div className="mt-4 mb-4">
-                                <span className="mail-desk-headers">Categories</span>
-                            </div> */}
+                            <div className="mail-desk-headers mb-5 mx-3">Mail Desks</div>
                             <div className="text-break">
-                                <span
-                                    className={activeCategory.category === "All" ? "category-pill active-category-pill" : "category-pill"}
-                                    onClick={() => setActiveCategory({ category: "All", index: -1 })} >All Mails
-                                </span>
-                                {categoryData && categoryData.map((elem, idx) => (
-                                    <span
-                                        key={idx}
-                                        className={activeCategory.category === elem._id ? "category-pill active-category-pill" : "category-pill"}
-                                        onClick={() => setActiveCategory({ category: elem._id, index: idx })}
-                                    >
-                                        <span >{elem._id}</span>
-                                        <span style={{ marginLeft: "1em" }} onClick={() => { setCategoryDeleteId(elem); setDeleteWarning(true) }}>
-                                            <IconContext.Provider value={{ fontSize: "18px" }}>
-                                                <AiFillCloseCircle />
-                                            </IconContext.Provider>
-
+                                <div className="row">
+                                    <div className="col-12">
+                                        <span
+                                            className={activeCategory.category === "All" ? "category-pill active-category-pill" : "category-pill"}
+                                            onClick={() => setActiveCategory({ category: "All", index: -1 })} >All Mails
                                         </span>
-                                    </span>
-                                ))}
-                                <span className="rounded-circle add-category-btn mx-4" onClick={() => toggleAddCategoryCard(!addCategoryCard)} >
-                                    <IconContext.Provider value={{ size: "30px", color: "#cbcde7" }}>
-                                        <MdAdd />
-                                    </IconContext.Provider>
-                                </span>
+                                        {categoryData && categoryData.map((elem, idx) => (
+                                            <span
+                                                key={idx}
+                                                className={activeCategory.category === elem._id ? "category-pill active-category-pill" : "category-pill"}
+                                                onClick={() => setActiveCategory({ category: elem._id, index: idx })}
+                                            >
+                                                <span >{elem._id}</span>
+                                                <span style={{ marginLeft: "1em" }} onClick={() => { setCategoryDeleteId(elem); setDeleteWarning(true) }}>
+                                                    <IconContext.Provider value={{ fontSize: "18px" }}>
+                                                        <AiFillCloseCircle />
+                                                    </IconContext.Provider>
 
+                                                </span>
+                                            </span>
+                                        ))}
+                                        <span className="rounded-circle add-category-btn mx-4" onClick={() => toggleAddCategoryCard(!addCategoryCard)} >
+                                            <IconContext.Provider value={{ size: "30px", color: "#cbcde7" }}>
+                                                <MdAdd />
+                                            </IconContext.Provider>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             {addCategoryCard && <div className="mt-3 mx-4">
                                 <div className="col-12 col-md-3 col-lg-4 add-category-card ">
@@ -107,7 +110,7 @@ const Mails = () => {
                                             <input type="text" className="category-inpt w-100" placeholder="Category.." value={category} onChange={(e) => setCategory(e.target.value)} />
                                         </div>
                                         <div className="col-3 text-end">
-                                            <button className="btn btn-primary" onClick={handleAddCategory}> Done </button>
+                                            <button className="btn add-category-submit-btn" onClick={handleAddCategory}> Done </button>
                                         </div>
                                     </div>
                                 </div>

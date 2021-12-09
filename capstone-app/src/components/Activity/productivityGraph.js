@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RingProgress } from '@ant-design/charts';
-
+import { RiStarSmileFill } from "react-icons/ri";
 const Productivity = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [percentage, setpercentage] = useState({});
@@ -88,7 +88,7 @@ const Productivity = () => {
             },
         }
         return (<div className="d-flex justify-content-center align-items-center" style={{ padding: 0, margin: 0, height: "inherit" }}>
-            <lottie-player src="https://assets7.lottiefiles.com/private_files/lf30_v3Lu1q.json" background="transparent" speed="1" style={{ width: "300px", height: "300px" }} loop autoplay></lottie-player>
+            <lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_yktu4ozm.json" background="transparent" speed="1" style={{ width: "300px", height: "300px" }} loop autoplay></lottie-player>
         </div>)
     } else {
         return (
@@ -101,7 +101,7 @@ const Productivity = () => {
                 <div className="row mt-4">
                     <div className="col-12 fw-bold lh-1" style={{ padding: 0, margin: 0 }} >
                         <div className="row" >
-                            <div className="col-3 d-flex align-items-center" style={{ padding: 0, margin: 0 }}>
+                            <div className="col-3 d-flex align-items-center justify-content-center" style={{ padding: 0, margin: 0 }}>
                                 <span className="fs-4 text-success ps-2 ">{data}%</span>
                             </div>
                             <div className="col-9" >
@@ -113,14 +113,17 @@ const Productivity = () => {
                 <div className="row mt-3">
                     <div className="col-12 fw-bold lh-1" style={{ padding: 0, margin: 0 }} >
                         <div className="row" >
-                            <div className="col-3 d-flex align-items-center" style={{ padding: 0, margin: 0 }}>
-                                {yesProductivity > 0 && <span className="fs-4 text-success ps-2 ">{yesProductivity}%</span>}
-                                {yesProductivity < 0 && <span className="fs-4 text-danger ps-2 ">{-1 * yesProductivity}%</span>}
+                            <div className="col-3 d-flex align-items-center justify-content-center" style={{ padding: 0, margin: 0 }}>
+                                {yesProductivity > 0 && <span className="fs-4 text-success">{yesProductivity}%</span>}
+                                {yesProductivity < 0 && <span className="fs-4 text-danger">{-1 * yesProductivity}%</span>}
+                                {yesProductivity === 0 && <span className="fs-2 text-warning ">
+                                    <RiStarSmileFill />
+                                </span>}
                             </div>
                             <div className="col-9" >
-                                {yesProductivity > 0 && <span style={{ fontSize: "10px" }}>Your Productivity is higher today</span>}
-                                {yesProductivity < 0 && <span style={{ fontSize: "10px" }}>You have a lower productivity today</span>}
-                                {yesProductivity === 0 && <span style={{ fontSize: "10px" }}>You are productivity constistent</span>}
+                                {yesProductivity > 0 && <span style={{ fontSize: "10px" }}>Your Productivity is higher today.</span>}
+                                {yesProductivity < 0 && <span style={{ fontSize: "10px" }}>You have a lower productivity today.</span>}
+                                {yesProductivity === 0 && <span style={{ fontSize: "10px" }}>Your productivity rate is constistent.</span>}
 
                             </div>
                         </div>

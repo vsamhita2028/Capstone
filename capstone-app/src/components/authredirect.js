@@ -9,7 +9,7 @@ const AuthRedirect = () => {
         axios.post(finalPath, {
             url: window.location.href,
         }).then((result) => {
-            console.log("meow");
+            console.log(result);
             localStorage.setItem('token', JSON.stringify(result));
             history.push("/dashboard");
         })

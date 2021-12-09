@@ -32,10 +32,12 @@ const ViewMails = ({ categoryData, activeCategory, setIsLoading, fetchData, setG
                         return (
                             <div key={idx} className="col-3">
                                 <div className="mail-desk-cards center-elem" onClick={() => setIsModal(true)} >
-                                    <IconContext.Provider value={{ size: "50px", color: "#a8abc1" }}>
-                                        <MdAdd />
-                                    </IconContext.Provider>
-                                    <div className="mt-2">Add Mail desk</div>
+                                    <div>
+                                        <IconContext.Provider value={{ size: "50px", color: "#a8abc1" }}>
+                                            <MdAdd />
+                                        </IconContext.Provider>
+                                    </div>
+                                    <div className="mt-2 fw-bold">Add Mail Desk</div>
                                 </div>
                             </div>
                         )
@@ -55,7 +57,7 @@ const ViewMails = ({ categoryData, activeCategory, setIsLoading, fetchData, setG
                                     <div className="d-flex justify-content-center mt-4 mb-4" onClick={() => setGetMailList(elem)}>
                                         <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_vpzw63hs.json" background="transparent" speed="1" style={{ width: 200, height: 100 }}></lottie-player>
                                     </div>
-                                    <div className="pt-2 text-center" style={{ color: "#a8abc1" }} onClick={() => setGetMailList(elem)}>
+                                    <div className="pt-2 text-center text-truncate" style={{ color: "#a8abc1" }} onClick={() => setGetMailList(elem)}>
                                         {elem}
                                     </div>
                                 </div>
@@ -70,9 +72,12 @@ const ViewMails = ({ categoryData, activeCategory, setIsLoading, fetchData, setG
                                 return (
                                     <div key={InnerIdx} className="col-3">
                                         <div className="mail-desk-cards center-elem" onClick={() => setIsModal(true)} >
-                                            <IconContext.Provider value={{ size: "50px", color: "#a8abc1" }}>
-                                                <MdAdd />
-                                            </IconContext.Provider>
+                                            <div>
+                                                <IconContext.Provider value={{ size: "50px", color: "#a8abc1" }}>
+                                                    <MdAdd />
+                                                </IconContext.Provider>
+                                            </div>
+                                            <div className="mt-2 fw-bold">Add Mail Desk</div>
                                         </div>
                                     </div>
                                 )
@@ -94,7 +99,7 @@ const ViewMails = ({ categoryData, activeCategory, setIsLoading, fetchData, setG
                                             <div className="d-flex justify-content-center mt-4 mb-4" onClick={() => setGetMailList(taskElem)} >
                                                 <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_vpzw63hs.json" background="transparent" speed="1" style={{ width: 200, height: 100 }}></lottie-player>
                                             </div>
-                                            <div className="text-center" style={{ color: "#a8abc1" }} onClick={() => setGetMailList(taskElem)} >{taskElem}</div>
+                                            <div className="text-center text-truncate" style={{ color: "#a8abc1" }} onClick={() => setGetMailList(taskElem)} >{taskElem}</div>
                                         </div>
                                     </div>
                                 )

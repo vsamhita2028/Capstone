@@ -9,7 +9,10 @@ const ViewTaskCard = ({ setOffCanvas, viewCardData, setIsLoading, fetchData, set
     const handleSubmit = (e) => {
         e.preventDefault();
         let data = JSON.parse(JSON.stringify(formData));
-        if (data.title && data.status && data.description && data.startDate && data.endDate && data.date) {
+        if (data.startDate >= data.endDate) {
+            setwarning(2);
+        }
+        else if (data.title && data.status && data.description && data.startDate && data.endDate && data.date) {
             let StartTime = formData.startDate.split(":");
             let EndTime = formData.endDate.split(":");
             let date = new Date(data.date);
@@ -34,7 +37,7 @@ const ViewTaskCard = ({ setOffCanvas, viewCardData, setIsLoading, fetchData, set
                     fetchData();
                 })
         } else {
-            setwarning(true);
+            setwarning(1);
         }
     }
     // const parseDate = (dateString) => {
@@ -61,12 +64,22 @@ const ViewTaskCard = ({ setOffCanvas, viewCardData, setIsLoading, fetchData, set
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            {warning &&
+                            {warning === 1 &&
                                 <div className="row">
                                     <div className="col-12">
                                         <div className="warning-bubble d-flex justify-content-between">
                                             <span>Please fill all the fields :)</span>
-                                            <span><button type="button" className="btn-close" onClick={() => setwarning(false)}></button></span>
+                                            <span><button type="button" className="btn-close" onClick={() => setwarning(0)}></button></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            {warning === 2 &&
+                                <div className="row mt-2">
+                                    <div className="col-12">
+                                        <div className="warning-bubble d-flex justify-content-between">
+                                            <span>Start time is grater than or equal to end time</span>
+                                            <span><button type="button" className="btn-close" onClick={() => setwarning(0)}></button></span>
                                         </div>
                                     </div>
                                 </div>

@@ -89,6 +89,9 @@
   justify-content: center;
   align-items: center;
 }
+.extra-padding {
+  padding: 0em 4em;
+}
 .goals-color-circle {
   cursor: pointer;
   border: 2px solid #eeeffa;

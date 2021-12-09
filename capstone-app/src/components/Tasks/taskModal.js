@@ -6,7 +6,7 @@ const TaskModal = ({ setVisibility, setIsLoading, fetchData }) => {
     const today = new Date().getFullYear() + "-" + m + "-" + dd;
     const Modalstyle = { display: "block", backgroundColor: 'rgba(0,0,0,0.8)' }
     const user = JSON.parse(localStorage.getItem("token")).data.profile.data.emailAddress;
-    const [warning, setWarning] = useState(false);
+    const [warning, setWarning] = useState(0);
     const [formData, setFormData] = useState({
         title: "",
         status: "Not Started",
@@ -20,7 +20,10 @@ const TaskModal = ({ setVisibility, setIsLoading, fetchData }) => {
     const onSubmitFunction = (e) => {
         e.preventDefault();
         let data = JSON.parse(JSON.stringify(formData));
-        if (data.title && data.status && data.description && data.startDate && data.endDate && data.date) {
+        if (data.startDate >= data.endDate) {
+            setWarning(2);
+        }
+        else if (data.title && data.status && data.description && data.startDate && data.endDate && data.date) {
             let StartTime = formData.startDate.split(":");
             let EndTime = formData.endDate.split(":");
             let date = new Date(data.date);
@@ -42,7 +45,7 @@ const TaskModal = ({ setVisibility, setIsLoading, fetchData }) => {
                     fetchData();
                 })
         } else {
-            setWarning(true);
+            setWarning(1);
         }
     }
     return (
@@ -56,16 +59,27 @@ const TaskModal = ({ setVisibility, setIsLoading, fetchData }) => {
                         <button type="button" className="btn-close" onClick={() => setVisibility(false)}></button>
                     </div>
                     <div className="modal-body modal-body-bg">
-                        {warning &&
+                        {warning === 1 &&
                             <div className="row">
                                 <div className="col-12">
                                     <div className="warning-bubble d-flex justify-content-between">
                                         <span>Please fill all the fields :)</span>
-                                        <span><button type="button" className="btn-close" onClick={() => setWarning(false)}></button></span>
+                                        <span><button type="button" className="btn-close" onClick={() => setWarning(0)}></button></span>
                                     </div>
                                 </div>
                             </div>
                         }
+                        {warning === 2 &&
+                            <div className="row mt-2">
+                                <div className="col-12">
+                                    <div className="warning-bubble d-flex justify-content-between">
+                                        <span>Start time is grater than or equal to end time</span>
+                                        <span><button type="button" className="btn-close" onClick={() => setWarning(0)}></button></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
                         <form>
                             <div className="container">
                                 <div className="row mt-2">

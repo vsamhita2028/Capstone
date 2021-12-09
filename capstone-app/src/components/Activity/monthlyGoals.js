@@ -1,6 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Line } from '@ant-design/charts';
+import { Line, G2 } from '@ant-design/charts';
+const { registerTheme } = G2;
+registerTheme('custom-theme', {
+    colors10: [
+        '#B590CA',
+        '#D19FEB',
+        '#B088F9',
+    ],
+    colors20: [
+        '#B590CA',
+        '#D19FEB',
+        '#B088F9',
+    ],
+});
 const MonthlyGoals = () => {
     const [data, setData] = useState([]);
     // const [config, setConfig] = useState()
@@ -73,6 +86,7 @@ const MonthlyGoals = () => {
                 duration: 5000,
             },
         },
+        theme: 'custom-theme'
     };
     if (isLoading) {
         return (<div className="d-flex justify-content-center align-items-center" style={{ padding: 0, margin: 0, height: "inherit" }}>
@@ -84,7 +98,7 @@ const MonthlyGoals = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12 d-flex justify-content-between align-items-center">
-                        <div className="fs-1 fw-bold">Goals</div>
+                        <div className="fs-1 fw-bold activity-headers">Goals</div>
                         <div>
                             <input type="number" className="year-filter-inpt" min="1900" max="2099" step="1" value={currentYear} onChange={(e) => handleFilterData(e.target.value)} />
                         </div>

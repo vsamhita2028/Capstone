@@ -80,3 +80,7 @@
 .year-filter-inpt:focus {
   outline: none;
 }
+
+.activity-headers {
+  color: #333741;
+}

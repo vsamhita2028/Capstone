@@ -16,3 +16,8 @@
   color: #333741;
   border-bottom: 5px solid #333741;
 }
+.logout-icon {
+  color: #949494;
+  cursor: pointer;
+  font-weight: bold;
+}

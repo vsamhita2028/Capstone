@@ -104,8 +104,8 @@ const DragNDrop = ({ mainData, setIsLoading, fetchData, dataCategory, setDataCat
                         <div className="p-2 mb-3">
                             <div className="main-heading p-3">{grpElem._id}</div>
                             {grpElem.tasks.length === 0 &&
-                                <div>
-                                    <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_eJkC1J.json" background="transparent" speed="1" style={{ width: 300, height: 300 }}></lottie-player>
+                                <div className="d-flex justify-content-center mt-5">
+                                    <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_nroeicty.json" background="transparent" speed="1" style={{ width: 300, height: 300 }} loop autoplay></lottie-player>
                                 </div>
                             }
                         </div>

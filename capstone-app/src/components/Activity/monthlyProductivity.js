@@ -1,6 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Column } from '@ant-design/charts';
+import { Column, G2 } from '@ant-design/charts';
+const { registerTheme } = G2;
+registerTheme('custom-theme', {
+    colors10: [
+        '#B590CA',
+        '#D19FEB',
+        '#B088F9',
+    ],
+    colors20: [
+        '#B590CA',
+        '#D19FEB',
+        '#B088F9',
+    ],
+});
 const Monthly = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -41,20 +54,8 @@ const Monthly = () => {
         xField: 'month',
         yField: 'value',
         seriesField: 'status',
-        label: {
-            position: 'middle',
-            layout: [
-                {
-                    type: 'interval-adjust-position',
-                },
-                {
-                    type: 'interval-hide-overlap',
-                },
-                {
-                    type: 'adjust-color',
-                },
-            ],
-        },
+
+        theme: 'custom-theme'
     };
     if (isLoading) {
         return (<div className="d-flex justify-content-center align-items-center" style={{ padding: 0, margin: 0, height: "inherit" }}>
@@ -66,7 +67,7 @@ const Monthly = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12 d-flex justify-content-between align-items-center ">
-                        <div className="fs-1 fw-bold">
+                        <div className="fs-1 fw-bold activity-headers">
                             Tasks
                         </div>
                         <div>

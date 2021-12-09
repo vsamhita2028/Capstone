@@ -57,7 +57,7 @@ const MailList = ({ from, setGetMailList }) => {
                     <div className="col-6">
                         <div className="d-flex align-items-center fs-5 fw-bold" >
                             <span onClick={() => setGetMailList(null)} className="pointer"><BiArrowBack /></span>
-                            <span className="mx-3">Inbox</span>
+                            <span className="mx-3 inbox-headers">Inbox</span>
                         </div>
                     </div>
                     <div className="col-6">

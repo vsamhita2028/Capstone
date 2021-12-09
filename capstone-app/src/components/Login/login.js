@@ -27,9 +27,17 @@ const Login = ({ setUrl, url }) => {
                 <div className="row" style={{ height: "100%" }}>
                     <div className="col-6 d-flex justify-content-center align-items-center">
                         <div className="px-5">
-                            <h1>Planner APP</h1>
-                            <p className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <div className="text-center mt-5"><a className={"btn btn-dark rounded-pill"} href={url}>Continue with Google</a></div>
+                            <div className="fs-1 fw-bold">Planner APP</div>
+                            <p className="mt-4 lh-lg">
+                                Having trouble keeping up with all the work? <br />
+                                This app is the one-stop solution to complete the tasks that you have either must have either missed or are still pending. It has all the features you need from organizing your inbox to keeping track of your progess, this application has everything covered up for you.
+                                So, what are you waiting for?<br />
+                                Hurry Up and Sign Up!
+                            </p>
+                            {/*
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                              */}
+                            <div className="text-center mt-5"><a className={"btn btn-dark rounded-pill px-5 py-3"} href={url}>Continue with Google</a></div>
                         </div>
                     </div>
                     <div className="col-6 lottie-graphic ">
