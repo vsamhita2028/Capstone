@@ -13,7 +13,7 @@
 }
 .goal-data-scrl {
   min-height: 20vh;
-  max-height: 77vh;
+  max-height: 74.5vh;
   padding-right: 1em;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -201,4 +201,24 @@
 .middle {
   position: absolute;
   z-index: inherit;
+}
+
+/* Delete milestone  */
+.delete-txt {
+  color: #fa4659;
+}
+.warning-conatiner {
+  background-color: #ffceb1;
+  border-left: 4px solid #d75e4f;
+  border-radius: 5px;
+}
+.warning-header {
+  color: #ac070a;
+}
+.warning-content {
+  color: #d75e4f;
+}
+.btn-grey {
+  background-color: #636977;
+  color: white;
 }

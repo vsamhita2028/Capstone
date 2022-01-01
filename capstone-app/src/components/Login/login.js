@@ -16,8 +16,8 @@ const Login = ({ setUrl, url }) => {
     }, [setUrl])
     if (!url) {
         return (
-            <div>
-                Loading...
+            <div className="d-flex justify-content-center align-items-center" style={{ padding: 0, margin: 0, height: "inherit" }}>
+                <lottie-player src="https://assets3.lottiefiles.com/datafiles/bEYvzB8QfV3EM9a/data.json" background="transparent" speed="1" style={{ width: "300px", height: "300px" }} loop autoplay></lottie-player>
             </div>
         )
 
@@ -30,7 +30,7 @@ const Login = ({ setUrl, url }) => {
                             <div className="fs-1 fw-bold">Planner APP</div>
                             <p className="mt-4 lh-lg">
                                 Having trouble keeping up with all the work? <br />
-                                This app is the one-stop solution to complete the tasks that you have either must have either missed or are still pending. It has all the features you need from organizing your inbox to keeping track of your progess, this application has everything covered up for you.
+                                This app is the one-stop solution to complete the tasks that you must have either missed or are still pending. It has all the features you need from organizing your inbox to keeping track of your progess, this application has everything covered up for you.
                                 So, what are you waiting for?<br />
                                 Hurry Up and Sign Up!
                             </p>

@@ -109,7 +109,7 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
                                                         <div className="col-6 mt-2" key={idx}>
                                                             <div
                                                                 onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
-                                                                className={milestoneData.badgeId === elem.id ? "badge-box activeclass mx-3" : "badge-box mx-3"}>
+                                                                className={parseInt(milestoneData.badgeId) === parseInt(elem.id) ? "badge-box activeclass mx-3" : "badge-box mx-3"}>
                                                                 <img src={elem.url} alt="img" height="50" width="50" />
                                                             </div>
                                                         </div>
@@ -119,7 +119,7 @@ const GoalsOffCanvas = ({ setEditGoalsView, editGoalsData, setIsLoading, fetchDa
                                                         <div className="col-12 mt-2 d-flex justify-content-center " key={idx}>
                                                             <div
                                                                 onClick={() => setMileStoneData({ ...milestoneData, badgeId: elem.id })}
-                                                                className={milestoneData.badgeId === elem.id ? "badge-box activeclass extra-padding" : "badge-box extra-padding"}>
+                                                                className={parseInt(milestoneData.badgeId) === parseInt(elem.id) ? "badge-box activeclass extra-padding" : "badge-box extra-padding"}>
                                                                 <img src={elem.url} alt="img" height="50" width="50" />
                                                             </div>
                                                         </div>

@@ -137,14 +137,17 @@ MailRouter.route("/getMails")
         let data_again = []
         let flag = false;
         var itemsProcessed = 0;
-
-        data.messages.forEach(async (item, index, array) => {
-            data_again.push(await getMail(item.id, client));
-            itemsProcessed++;
-            if (itemsProcessed === array.length) {
-                console.log("meow", data_again);
-                res.send({ msg: data_again });
-            }
-        });
+        if (data && data.messages) {
+            data.messages.forEach(async (item, index, array) => {
+                data_again.push(await getMail(item.id, client));
+                itemsProcessed++;
+                if (itemsProcessed === array.length) {
+                    console.log("meow", data_again);
+                    res.send({ msg: data_again });
+                }
+            });
+        } else {
+            res.send({ msg: [] })
+        }
     })
 module.exports = MailRouter;

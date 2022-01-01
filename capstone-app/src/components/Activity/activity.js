@@ -48,7 +48,9 @@ const Activity = () => {
     );
     if (isLoading) {
         return (
-            <div>Loading...</div>
+            <div className="d-flex justify-content-center align-items-center mt-5" style={{ padding: 0, margin: 0, height: "inherit" }}>
+                <lottie-player src="https://assets3.lottiefiles.com/datafiles/bEYvzB8QfV3EM9a/data.json" background="transparent" speed="1" style={{ width: "550px", height: "550px" }} loop autoplay></lottie-player>
+            </div>
         )
     } else {
         return (

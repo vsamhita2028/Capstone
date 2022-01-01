@@ -9,6 +9,7 @@ import badge5 from "../../images/medal5.png"
 const Badges = () => {
     let badges = [badge1, badge2, badge3, badge4, badge5]
     const [badgesData, setBadgesData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [filteredBadges, setFilteredBadges] = useState([]);
     const [dateFilter, setDateFilter] = useState("");
     const filterData = (date) => {
@@ -42,8 +43,18 @@ const Badges = () => {
             console.log(data);
             setBadgesData(data);
             setFilteredBadges(data);
+            setIsLoading(false);
         })
-    }, [])
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center mt-5" style={{ padding: 0, margin: 0, height: "inherit" }}>
+                <lottie-player src="https://assets3.lottiefiles.com/datafiles/bEYvzB8QfV3EM9a/data.json" background="transparent" speed="1" style={{ width: "550px", height: "550px" }} loop autoplay></lottie-player>
+            </div>
+        )
+    }
+
     return (
         <div className="container">
             <div className="row mt-3">

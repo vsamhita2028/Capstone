@@ -97,7 +97,7 @@ const GoalsCard = ({ dateParser, setEditGoalsView, setEditGoalsData, schedulerDa
                                     <div className="row mt-2">
                                         <div className="col-12 d-flex justify-content-end ">
                                             {/* disabled={pillDetails[idx].status === "Completed"} */}
-                                            {<select className="form-select w-100 select-goal-status" value={pillDetails[idx].status}
+                                            {<select className="form-select w-100 select-goal-status" disabled={pillDetails[idx].status === "Completed"} value={pillDetails[idx].status}
                                                 onChange={(e) => updatePillStatus(e.target.value, idx)}
                                                 style={handlePillStyle(pillDetails[idx].status)}
                                             >

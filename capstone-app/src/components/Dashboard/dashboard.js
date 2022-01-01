@@ -37,7 +37,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="col-1 p-4 d-flex justify-content-end align-items-center">
-          <span className={"nav-item px-2"} onClick={handleLogout}>LOGOUT</span>
+          <span className={"nav-item px-2"} onClick={handleLogout}>Logout</span>
           <IconContext.Provider value={{ className: "logout-icon" }}>
             <span> <FiLogOut /></span>
           </IconContext.Provider>

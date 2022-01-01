@@ -11,6 +11,7 @@ const MailList = ({ from, setGetMailList }) => {
     const mailCardStyle = "mail-subject-card d-flex justify-content-between align-items-center";
     const [mailData, setMailData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [nullCase, setNullCase] = useState(false);
     const [selectedMail, setSelectedMail] = useState()
     const [taskModalVisibility, setModalVisibility] = useState(false)
     useEffect(() => {
@@ -24,18 +25,17 @@ const MailList = ({ from, setGetMailList }) => {
             console.log("hi")
             console.log(result);
             let data = []
-            result.data.msg.forEach(element => {
-                var val = parseMessage(element.data);
-                data.push(val)
-            });
-            console.log(data);
+            if (result.data.msg.length !== 0) {
+                result.data.msg.forEach(element => {
+                    var val = parseMessage(element.data);
+                    data.push(val)
+                });
+                setMailData(data)
+                setSelectedMail(data[0])
+            } else {
+                setNullCase(true);
+            }
             setIsLoading(false);
-            //setMailData(parsedMessage.textHtml)
-            // const val = Base64.decode(result.data.msg[0].data.payload.parts[0].body.data)
-
-            // // console.log(parser(val));
-            setMailData(data)
-            setSelectedMail(data[0])
         })
     }, [from])
     const dateParser = (dateVal) => {
@@ -47,7 +47,35 @@ const MailList = ({ from, setGetMailList }) => {
     }
     if (isLoading) {
         return (
-            <div>Loading...</div>
+            <div className="d-flex justify-content-center align-items-center mt-5" style={{ padding: 0, margin: 0, height: "inherit" }}>
+                <lottie-player src="https://assets3.lottiefiles.com/datafiles/bEYvzB8QfV3EM9a/data.json" background="transparent" speed="1" style={{ width: "550px", height: "550px" }} loop autoplay></lottie-player>
+            </div>
+        )
+    }
+    else if (nullCase) {
+        return (
+            <div className="row mt-5" style={{ height: "100%" }}>
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="d-flex justify-content-between">
+                                <span onClick={() => setGetMailList(null)} className="pointer fs-1 ms-5"><BiArrowBack /></span>
+                                <span className="fs-1"></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="d-flex justify-content-center">
+                                <div>
+                                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_QKRDTQ.json" background="transparent" speed="1" style={{ width: "550px", height: "550px" }} loop autoplay></lottie-player>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
     return (
