@@ -15,4 +15,5 @@ This app is the one-stop solution to complete the tasks that you must have eithe
 
 # UI
 
-Designed by Prathyusha Kalive :)
+Designed by Prathyusha Kalive :) <br/>
+![alt text](https://github.com/vsamhita2028/Capstone/blob/main/capstone-app/public/images/Home.png?raw=true)
